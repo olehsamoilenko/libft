@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_memccpy.c                                     :+:      :+:    :+:   */
+/*   main_isalnum.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osamoile <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/21 16:24:27 by osamoile          #+#    #+#             */
-/*   Updated: 2018/03/21 17:21:09 by osamoile         ###   ########.fr       */
+/*   Created: 2018/03/21 18:01:05 by osamoile          #+#    #+#             */
+/*   Updated: 2018/03/21 18:07:57 by osamoile         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,9 @@
 
 int		main(void)
 {
-	char	a[] = "tes*t basic du memccpy !";
-	char	b1[20];
-	char	b2[20];
-	int		c;
-	size_t	len;
+	int a;
 
-	c = 300;
-	len = 5;
-	printf("my       | %s | b: %s\n", ft_memccpy(b1, a, c, len), b1);
-	printf("original | %s | b: %s\n", memccpy(b2, a, c, len), b2);
-	return (0);
+	a = 'a';
+	printf("my:       %i\n", ft_isalnum(a));
+	printf("original: %i\n", isalnum(a));
 }

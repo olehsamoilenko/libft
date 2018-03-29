@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_strchr.c                                      :+:      :+:    :+:   */
+/*   main_memset.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osamoile <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/21 18:01:05 by osamoile          #+#    #+#             */
-/*   Updated: 2018/03/21 18:07:57 by osamoile         ###   ########.fr       */
+/*   Created: 2018/03/21 16:24:27 by osamoile          #+#    #+#             */
+/*   Updated: 2018/03/21 17:21:09 by osamoile         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,15 @@
 
 int		main(void)
 {
-	char	*a;
-	int		c;
-
-	a = "abc";
-	c = 0;
-	printf("my:       %s\n", ft_strchr(a, c));
-	printf("original: %s\n", strchr(a, c));
+	char	b[20] = "ab*c";
+	char	c;
+	int		n;
+	
+	n = 2;
+	c = '*';
+	ft_memset(b, c, n);
+	printf("my      : %s\n", b);
+	memset(b, c, n);
+	printf("original: %s\n", b);
+	return (0);
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_strjoin.c                                     :+:      :+:    :+:   */
+/*   main_strsplit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osamoile <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,9 +15,15 @@
 
 int		main(void)
 {
-	char a[] = "oleh";
-	char b[] = "42";
+	char	**a;
+	int		i;
 
-	printf("%s\n", ft_strjoin(a, b));
+	a = ft_strsplit("*f*", '*');
+	while (a[i])
+	{
+		printf("%s\n", a[i]);
+		i++;
+	}
+	system("leaks a.out");
 	return (0);
 }

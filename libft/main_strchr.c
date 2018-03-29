@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_strcat.c                                      :+:      :+:    :+:   */
+/*   main_strchr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osamoile <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,12 +15,11 @@
 
 int		main(void)
 {
-	char	a1[20] = "oleh";
-	char	a2[20] = "oleh";
-	char	*b;
-	char	*c;
+	char	*a;
+	int		c;
 
-	b = 0;
-	printf("my:       %s\n", ft_strcat(a1, b));
-	printf("original: %s\n", strcat(a2, b));
+	a = "abc";
+	c = 'b';
+	printf("my:       %s\n", ft_strchr(a, c));
+	printf("original: %s\n", strchr(a, c));
 }

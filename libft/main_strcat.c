@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_putnbr.c                                      :+:      :+:    :+:   */
+/*   main_strcat.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osamoile <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/27 14:32:04 by osamoile          #+#    #+#             */
-/*   Updated: 2018/03/27 14:34:20 by osamoile         ###   ########.fr       */
+/*   Created: 2018/03/21 18:01:05 by osamoile          #+#    #+#             */
+/*   Updated: 2018/03/21 18:07:57 by osamoile         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include <stdio.h>
+#include "libft.h"
 
 int		main(void)
 {
-	int		i;
+	char	a1[20] = "oleh";
+	char	a2[20] = "oleh";
+	char	*b;
+	char	*c;
 
-	i = -2147483647;
-	i = 0;
-	ft_putnbr(i);
-	return (0);
+	b = "42";
+	printf("my:       %s\n", ft_strcat(a1, b));
+	printf("original: %s\n", strcat(a2, b));
 }

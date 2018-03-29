@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_atoi.c                                        :+:      :+:    :+:   */
+/*   main_strjoin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osamoile <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/21 19:44:31 by osamoile          #+#    #+#             */
-/*   Updated: 2018/03/21 19:44:35 by osamoile         ###   ########.fr       */
+/*   Created: 2018/03/27 14:32:04 by osamoile          #+#    #+#             */
+/*   Updated: 2018/03/27 14:34:20 by osamoile         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
+#include <stdio.h>
 
 int		main(void)
 {
-	char *a;
+	char *a = 0;
+	char *b = "ol";
 
-	a = "9223372036854775806";
-	printf("my:       %i\n", ft_atoi(a));
-	printf("original: %i\n", atoi(a));
+	printf("%s\n", ft_strjoin(a, b));
+	return (0);
 }

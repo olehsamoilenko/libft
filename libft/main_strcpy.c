@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_isalnum.c                                     :+:      :+:    :+:   */
+/*   main_strcpy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osamoile <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,9 +15,12 @@
 
 int		main(void)
 {
-	int a;
+	char	*a1 = "ab";
+	char	*a2 = "ab";
+	char	b[] = "abcdefghijkl";
 
-	a = 'Z' + 1;
-	//printf("my:       %i\n", ft_isalnum(a));
-	printf("original: %i\n", isalnum(a));
+	a1 = malloc(sizeof(char) * 5);
+	a2 = malloc(sizeof(char) * 5);
+	printf("my:       %s\n", ft_strcpy(a1, b));
+	printf("original: %s\n", strcpy(a2, b));
 }

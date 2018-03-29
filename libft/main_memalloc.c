@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_strsplit.c                                    :+:      :+:    :+:   */
+/*   main_memalloc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osamoile <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,18 +11,14 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 int		main(void)
 {
-	char	**a;
-	int		i;
+	char *a;
 
-	a = ft_strsplit("*f*", '*');
-	while (a[i])
-	{
-		printf("%s\n", a[i]);
-		i++;
-	}
+	a = ft_memalloc(300);
+	ft_memdel((void*)&a);
+	a = 0;
+	system ("leaks a.out");
 	return (0);
 }
