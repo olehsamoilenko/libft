@@ -12,46 +12,31 @@
 
 #include "libft.h"
 
-static int		is_separator(char c)
-{
-	if (c == ' ' || c == '\n' || c == '\t' ||
-			c == '\r' || c == '\v' || c == '\f')
-		return (1);
-	else
-		return (0);
-}
-
-static int		is_digit(char c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	else
-		return (0);
-}
-
 int				ft_atoi(const char *str)
 {
-	int		i;
-	int		sign;
-	int		res;
-	int		start;
+	int				i;
+	int				sign;
+	unsigned long	res;
+	int				start;
 
 	sign = 1;
 	res = 0;
 	i = 0;
-	while (is_separator(str[i]))
+	while (ft_iswhitespace(str[i]))
 		i++;
 	if (str[i] == '-')
 		sign *= -1;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
 	start = i;
-	while (is_digit(str[i]))
+	while (ft_isdigit(str[i]))
 	{
+		if (sign == 1 && (res > MAX || (res == MAX && str[i] > '7')))
+			return (-1);
+		if (sign == -1 && (res > MAX || (res == MAX && str[i] > '8')))
+			return (0);
 		res = res * 10 + (str[i] - '0');
 		i++;
-		if (i - start >= 20)
-			return sign == -1 ? 0 : -1;
 	}
-	return (sign * res);
+	return ((int)(sign * res));
 }

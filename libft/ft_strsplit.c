@@ -10,30 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
-int		count_words(const char *s, char c)
-{
-	int i;
-	int count;
-
-	i = 0;
-	count = 0;
-	while (s[i])
-	{
-		while (s[i] == c)
-			i++;
-		if (s[i] == '\0')
-			break ;
-		while (s[i] != c && s[i] != '\0')
-			i++;
-		count++;
-	}
-	return (count);
-}
-
-void	len_words(char **a, char const *s, char c)
+static void	len_words(char **a, char const *s, char c)
 {
 	int i;
 	int count;
@@ -59,7 +38,7 @@ void	len_words(char **a, char const *s, char c)
 	}
 }
 
-void	fill(char **a, char const *s, char c)
+static void	fill(char **a, char const *s, char c)
 {
 	int i;
 	int count;
@@ -84,16 +63,16 @@ void	fill(char **a, char const *s, char c)
 	}
 }
 
-char	**ft_strsplit(char const *s, char c)
+char		**ft_strsplit(char const *s, char c)
 {
 	char **a;
 
 	if (!s)
 		return (0);
-	a = (char**)malloc(sizeof(char*) * (count_words(s, c) + 1));
+	a = (char**)malloc(sizeof(char*) * (ft_wordscount(s, c) + 1));
 	if (!a)
 		return (0);
-	a[count_words(s, c)] = 0;
+	a[ft_wordscount(s, c)] = 0;
 	len_words(a, s, c);
 	fill(a, s, c);
 	return (a);

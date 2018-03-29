@@ -10,16 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-
-int		is_separator(char c)
-{
-	if (c == ' ' || c == '\t' || c == '\n')
-		return (1);
-	else
-		return (0);
-}
+#include "libft.h"
 
 char	*ft_strtrim(char const *s)
 {
@@ -35,9 +26,9 @@ char	*ft_strtrim(char const *s)
 		return (0);
 	while (s[++i])
 	{
-		if (!is_separator(s[i]) && first == -1)
+		if (!ft_iswhitespace(s[i]) && first == -1)
 			first = i;
-		if (!is_separator(s[i]))
+		if (!ft_iswhitespace(s[i]))
 			last = i;
 	}
 	a = (char*)malloc(sizeof(char) * (last - first + 2));

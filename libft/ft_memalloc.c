@@ -10,22 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <string.h>
+#include "libft.h"
 
 void	*ft_memalloc(size_t size)
 {
-	size_t	i;
 	char	*m;
 
 	m = (char*)malloc(sizeof(char) * size);
 	if (!m)
 		return (0);
-	i = 0;
-	while (i < size)
-	{
-		m[i] = 0;
-		i++;
-	}
+	ft_bzero(m, size);
 	return (m);
 }

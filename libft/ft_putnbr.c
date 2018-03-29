@@ -27,7 +27,7 @@ static void	fill_and_put(int n, char *buf)
 		ft_putchar(buf[i]);
 }
 
-void	ft_putnbr(int n)
+void		ft_putnbr(int n)
 {
 	char	buf[10000];
 	int		i;

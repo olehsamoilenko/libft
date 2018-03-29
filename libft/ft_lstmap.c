@@ -10,23 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
 	t_list	*new;
+	t_list	*buf;
 
 	if (!lst || !f)
 		return (0);
-	//new = ft_lstnew(lst->content, lst->content_size);
-	//lst = lst->next;
 	new = f(lst);
+	buf = new;
 	lst = lst->next;
 	while (lst)
 	{
 		new->next = f(lst);
 		lst = lst->next;
+		new = new->next;
 	}
-	return (new);
+	new->next = 0;
+	return (buf);
 }

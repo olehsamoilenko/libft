@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-
-#include <string.h>
+#include "libft.h"
 
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
@@ -25,7 +23,6 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		
 		a[i] = b[i];
 		if (b[i] == (char)c)
 			return (&a[i + 1]);
