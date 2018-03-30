@@ -33,6 +33,8 @@ static void	len_words(char **a, char const *s, char c)
 			len++;
 		}
 		a[count] = (char*)malloc(sizeof(char) * (len + 1));
+		if (!a)
+			ft_arrclr(a);
 		a[count][len] = '\0';
 		count++;
 	}

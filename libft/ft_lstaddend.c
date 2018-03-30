@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_atoi.c                                        :+:      :+:    :+:   */
+/*   ft_lstaddend.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osamoile <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/21 19:44:31 by osamoile          #+#    #+#             */
-/*   Updated: 2018/03/21 19:44:35 by osamoile         ###   ########.fr       */
+/*   Created: 2018/03/28 08:24:14 by osamoile          #+#    #+#             */
+/*   Updated: 2018/03/28 08:24:49 by osamoile         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
 
-int		main(void)
+void	ft_lstaddend(t_list **alst, t_list *new)
 {
-	char *a;
-
-	a = "11922337203685477589";
-	printf("my:       %i\n", ft_atoi(a));
-	printf("original: %i\n", atoi(a));
+	if (!alst || !new)
+		return ;
+	while ((*alst)->next)
+		*alst = (*alst)->next;
+	(*alst)->next = new;
 }

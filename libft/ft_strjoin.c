@@ -24,7 +24,7 @@ static int		len(const char *s)
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char			*ft_strjoin(char const *s1, char const *s2)
 {
 	int		i;
 	int		j;
@@ -37,20 +37,14 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	a = (char*)malloc(sizeof(char) * (i + j + 1));
 	if (!a)
 		return (0);
-	i = 0;
+	i = -1;
 	if (s1)
-		while (s1[i])
-		{
+		while (s1[++i])
 			a[i] = s1[i];
-			i++;
-		}
-	j = 0;
+	j = -1;
 	if (s2)
-		while (s2[j])
-		{
+		while (s2[++j])
 			a[i + j] = s2[j];
-			j++;
-		}
 	a[i + j] = '\0';
 	return (a);
 }

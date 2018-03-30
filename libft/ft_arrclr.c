@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_memdel.c                                      :+:      :+:    :+:   */
+/*   ft_arrclr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osamoile <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/27 14:32:04 by osamoile          #+#    #+#             */
-/*   Updated: 2018/03/27 14:34:20 by osamoile         ###   ########.fr       */
+/*   Created: 2018/03/21 18:00:27 by osamoile          #+#    #+#             */
+/*   Updated: 2018/03/21 18:00:28 by osamoile         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		main(void)
+void	ft_arrclr(char **arr)
 {
-	void *a;
-	a = (void*)malloc(sizeof(void) * 10);
-	ft_memdel(&a);
-	system("leaks a.out");
-	return (0);
+	int	i;
+
+	i = 0;
+	if (!arr)
+		return ;
+	while (arr[i])
+	{
+		ft_strdel(&arr[i]);
+		i++;
+	}
+	free(arr);
+	arr = 0;
 }

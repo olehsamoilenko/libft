@@ -16,7 +16,7 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 {
 	t_list	*lst;
 
-	lst = malloc(sizeof(t_list));
+	lst = (t_list*)malloc(sizeof(t_list));
 	if (!lst)
 		return (0);
 	lst->content_size = content_size;

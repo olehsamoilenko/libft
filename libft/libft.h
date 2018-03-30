@@ -86,5 +86,7 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_iswhitespace(int c);
 int					ft_countdigits(int n);
 int					ft_wordscount(const char *s, char c);
+void				ft_arrclr(char **arr);
+void				ft_lstaddend(t_list **alst, t_list *new);
 
 #endif
