@@ -24,5 +24,5 @@ void	*ft_memset(void *b, int c, size_t len)
 		s[i] = c;
 		i++;
 	}
-	return (s);
+	return ((void*)s);
 }

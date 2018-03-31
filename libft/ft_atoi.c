@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#define MAX 922337203685477580
 
 int				ft_atoi(const char *str)
 {
@@ -38,5 +39,5 @@ int				ft_atoi(const char *str)
 		res = res * 10 + (str[i] - '0');
 		i++;
 	}
-	return ((int)(sign * res));
+	return (sign * (int)res));
 }

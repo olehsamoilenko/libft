@@ -26,5 +26,5 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 		a[i] = (unsigned char)b[i];
 		i++;
 	}
-	return (a);
+	return ((void*)a);
 }

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
@@ -35,5 +34,5 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 		while (len-- > 0)
 			d[len] = s[len];
 	}
-	return (d);
+	return ((void*)d);
 }

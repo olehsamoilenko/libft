@@ -12,7 +12,6 @@
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define MAX 922337203685477580
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
