@@ -12,7 +12,15 @@
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s)
+static int	isseparator(char c)
+{
+	if (c == ' ' || c == '\t' || c == '\n')
+		return (1);
+	else
+		return (0);
+}
+
+char		*ft_strtrim(char const *s)
 {
 	int		i;
 	int		first;
@@ -26,9 +34,9 @@ char	*ft_strtrim(char const *s)
 		return (0);
 	while (s[++i])
 	{
-		if (!ft_iswhitespace(s[i]) && first == -1)
+		if (!isseparator(s[i]) && first == -1)
 			first = i;
-		if (!ft_iswhitespace(s[i]))
+		if (!isseparator(s[i]))
 			last = i;
 	}
 	a = (char*)malloc(sizeof(char) * (last - first + 2));
