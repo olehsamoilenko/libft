@@ -18,7 +18,6 @@ int				ft_atoi(const char *str)
 	int				i;
 	int				sign;
 	unsigned long	res;
-	int				start;
 
 	sign = 1;
 	res = 0;
@@ -26,10 +25,9 @@ int				ft_atoi(const char *str)
 	while (ft_iswhitespace(str[i]))
 		i++;
 	if (str[i] == '-')
-		sign *= -1;
+	sign *= -1;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
-	start = i;
 	while (ft_isdigit(str[i]))
 	{
 		if (sign == 1 && (res > MAX || (res == MAX && str[i] > '7')))
