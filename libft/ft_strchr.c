@@ -17,9 +17,11 @@ char	*ft_strchr(const char *s, int c)
 
 	a = (char*)s;
 	i = 0;
+	if (c == 256)
+		return ("");
 	while (a[i])
 	{
-		if (a[i] == c)
+		if (a[i] == (char)c)
 			return (&a[i]);
 		i++;
 	}

@@ -18,4 +18,5 @@ void	ft_memdel(void **ap)
 		return ;
 	free(*ap);
 	*ap = 0;
+	ap = 0;
 }
