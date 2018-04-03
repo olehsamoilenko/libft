@@ -1103,7 +1103,7 @@ void	putstr_fd_test(void)
 	fd = open("putstr_fd.txt", O_RDWR | O_CREAT, 0777);
 	ft_putstr_fd("Success!", fd);
 	close(fd);
-	fd = open("putendl_fd.txt", O_RDWR);
+	fd = open("putstr_fd.txt", O_RDWR);
 	read(fd, buffer, 8);
 	if (strcmp(buffer, "Success!") != 0)
 		printf("     Fail! ft_putstr_fd('Success!'): '%s' <=> 'Success!'\n", buffer);
