@@ -32,19 +32,21 @@ char			*ft_strjoin(char const *s1, char const *s2)
 
 	if (!s1 && !s2)
 		return (0);
-	i = len(s1);
-	j = len(s2);
-	a = (char*)malloc(sizeof(char) * (i + j + 1));
+	a = (char*)malloc(sizeof(char) * (len(s1) + len(s2) + 1));
 	if (!a)
 		return (0);
 	i = -1;
 	if (s1)
 		while (s1[++i])
 			a[i] = s1[i];
+	else
+		i = 0;
 	j = -1;
 	if (s2)
 		while (s2[++j])
 			a[i + j] = s2[j];
+	else
+		j = 0;
 	a[i + j] = '\0';
 	return (a);
 }

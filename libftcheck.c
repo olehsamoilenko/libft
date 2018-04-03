@@ -28,7 +28,7 @@ void	memset_test(void)
 		memset(buf1, i, strlen(test));
 		ft_memset(buf2, i, strlen(test));
 		if (strcmp(buf1, buf2) != 0)
-			printf("     Fail! ft_memset('%s', %c, %i): '%s' <=> '%s'\n",
+			printf("     Fail! ft_memset('%s', %c, %zu): '%s' <=> '%s'\n",
 			test, i, strlen(test), buf2, buf1);
 	}
 }
@@ -78,15 +78,15 @@ void	memcpy_test(void)
 						"This is string8test"
 					};
 	int count = sizeof(test) / sizeof(test[0]);
-	char buf1[100];
-	char buf2[100];
+	char *buf1 = malloc(sizeof(char) * 25);
+	char *buf2 = malloc(sizeof(char) * 25);
 	int i = -1;
 	while (++i < count)
 	{
-		memcpy(buf1, test[i], strlen(test[i]));
-		ft_memcpy(buf2, test[i], strlen(test[i]));
+		buf1 = memcpy(buf1, test[i], strlen(test[i]));
+		buf2 = ft_memcpy(buf2, test[i], strlen(test[i]));
 		if (strcmp(buf1, buf2) != 0)
-			printf("     Fail! ft_memcpy('', '%s', %i): '%s' <=> '%s'\n",
+			printf("     Fail! ft_memcpy('', '%s', %zu): '%s' <=> '%s'\n",
 			test[i], strlen(test[i]), buf1, buf2);
 	}
 }
@@ -230,7 +230,7 @@ void	strlen_test(void)
 	while (test[++i])
 	{
 		if (strlen(test[i]) != ft_strlen(test[i]))
-			printf("     Fail! ft_strlen('%s'): %i <=> %i\n",
+			printf("     Fail! ft_strlen('%s'): %zu <=> %zu\n",
 			test[i], ft_strlen(test[i]), strlen(test[i]));
 	}
 }
@@ -423,14 +423,11 @@ void	strrchr_test(void)
 	char *r2;
 	while (++i <= 300)
 	{
-		if (i != 256)
-		{
-			r1 = strrchr(s, i);
-			r2 = ft_strrchr(s, i);
-			if (strequ(r1, r2) != 1)
-				printf("     Fail! ft_strrchr('%s', %i): '%s' <=> '%s'\n",
-				s, i, r2, r1);
-		}
+		r1 = strrchr(s, i);
+		r2 = ft_strrchr(s, i);
+		if (strequ(r1, r2) != 1)
+			printf("     Fail! ft_strrchr('%s', %i): '%s' <=> '%s'\n",
+			s, i, r2, r1);
 	}
 }
 
@@ -919,9 +916,106 @@ void	strjoin_test(void)
 	int count = sizeof(test) / sizeof(test[0]);
 	int i = -1;
 	while (++i < count)
-		if ((strequ(test[i].s1, test[i].s2), test[i].res) == 0)
-			printf("     Fail! ft_strjoin(%s, %s): %s <=> %s\n",
-			test[i].s1, test[i].s2, ft_strjoin(test[i].s1, test[i].s2), test[i].res);
+	{
+		char *r = ft_strjoin(test[i].s1, test[i].s2);
+		if (strequ(r, test[i].res) != 1)
+			printf("     Fail! ft_strjoin('%s', '%s'): '%s' <=> '%s'\n",
+			test[i].s1, test[i].s2, r, test[i].res);
+	}
+}
+
+void	strtrim_test(void)
+{
+	struct example
+	{
+		char *s;
+		char *res;
+	};
+	struct example test[] =	{
+								"abc", "abc",
+								"  \t\t\n\t   \t\ntest \n\n\t   \t\n  ", "test",
+								"  \t\v\r\f test\n", "\v\r\f test",
+								"   a b c   ", "a b c",
+								"    a c", "a c",
+								NULL, NULL
+							};
+	int count = sizeof(test) / sizeof(test[0]);
+	int i = -1;
+	while (++i < count)
+	{
+		char *r = ft_strtrim(test[i].s);
+		if (strequ(r, test[i].res) != 1)
+			printf("     Fail! ft_strtrim('%s'): '%s' <=> '%s'\n",
+			test[i].s, r, test[i].res);
+	}
+}
+
+void	strsplit_test(void)
+{
+	struct example
+	{
+		char *s;
+		char sep;
+	};
+	struct example test[] =	{
+								"***This*is***test******string*******", '*',
+								"This*is***test******string", '*',
+								"***This*is***test******string", '*',
+								"This*is***test******string", '*',
+								"This is test", '*',
+								NULL, ' '
+							};
+	char *res0[] =	{ "This", "is", "test", "string", 0 };
+	char *res1[] =	{ "This is test", 0 };
+	char *res2[] =	{ 0 };
+	int i = -1;
+	char **r = ft_strsplit(test[0].s, test[0].sep);
+	while (res0[++i])
+	{
+		if (strequ(res0[i], r[i]) != 1)
+			printf("     Fail! ft_strsplit('%s', %c): res[%i] = '%s' <=> '%s'\n",
+			test[0].s, test[0].sep, i, r[i], res0[i]);
+	}
+	i = -1;
+	r = ft_strsplit(test[1].s, test[1].sep);
+	while (res0[++i])
+	{
+		if (strequ(res0[i], r[i]) != 1)
+			printf("     Fail! ft_strsplit('%s', %c): res[%i] = '%s' <=> '%s'\n",
+			test[1].s, test[1].sep, i, r[i], res0[i]);
+	}
+	i = -1;
+	r = ft_strsplit(test[2].s, test[2].sep);
+	while (res0[++i])
+	{
+		if (strequ(res0[i], r[i]) != 1)
+			printf("     Fail! ft_strsplit('%s', %c): res[%i] = '%s' <=> '%s'\n",
+			test[2].s, test[2].sep, i, r[i], res0[i]);
+	}
+	i = -1;
+	r = ft_strsplit(test[3].s, test[3].sep);
+	while (res0[++i])
+	{
+		if (strequ(res0[i], r[i]) != 1)
+			printf("     Fail! ft_strsplit('%s', %c): res[%i] = '%s' <=> '%s'\n",
+			test[3].s, test[3].sep, i, r[i], res0[i]);
+	}
+	i = -1;
+	r = ft_strsplit(test[4].s, test[4].sep);
+	while (res1[++i])
+	{
+		if (strequ(res1[i], r[i]) != 1)
+			printf("     Fail! ft_strsplit('%s', %c): res[%i] = '%s' <=> '%s'\n",
+			test[4].s, test[4].sep, i, r[i], res1[i]);
+	}
+	i = -1;
+	r = ft_strsplit(test[5].s, test[5].sep);
+	while (res2[++i])
+	{
+		if (strequ(res2[i], r[i]) != 1)
+			printf("     Fail! ft_strsplit('%s', %c): res[%i] = '%s' <=> '%s'\n",
+			test[5].s, test[5].sep, i, r[i], res2[i]);
+	}
 }
 
 void	itoa_test(void)
@@ -943,8 +1037,117 @@ void	itoa_test(void)
 	while (++i < count)
 	{
 		if (atoi(ft_itoa(test[i])) != test[i])
-			printf("     Fail! ft_itoa(%i): %s\n", test[i], ft_itoa(i));
+			printf("     Fail! ft_itoa(%i): '%s' <=> '%i'\n",
+			test[i], ft_itoa(test[i]), test[i]);
 	}
+}
+
+void	putchar_test(void)
+{
+	char	buffer[] = "PUTHCAR TESTING...\n";
+	int		i;
+
+	i = 0;
+	while (buffer[i] != '\0')
+	{
+		ft_putchar(buffer[i]);
+		i++;
+	}
+}
+
+void	putstr_test(void)
+{
+	ft_putstr("PUTSTR TESTING...\n");
+}
+
+void	putendl_test(void)
+{
+	ft_putendl("PUTENDL TESTING...");
+}
+
+void	putnbr_test(void)
+{
+	ft_putstr("     TEST1: -2147483648 ");
+	ft_putnbr(-2147483648);
+	ft_putstr("\n     TEST2: 2147483647 ");
+	ft_putnbr(2147483647);
+	ft_putstr("\n     TEST3: -2147 ");
+	ft_putnbr(-2147);
+	ft_putstr("\n     TEST4: 0 ");
+	ft_putnbr(0);
+	ft_putstr("\n     TEST5: 1232147 ");
+	ft_putnbr(1232147);
+	ft_putstr("\n");
+}
+
+void	putchar_fd_test(void)
+{
+	int		fd;
+	char	buffer[1];
+
+	fd = open("putchar_fd.txt", O_RDWR | O_CREAT, 0777);
+	ft_putchar_fd('a', fd);
+	close(fd);
+	fd = open("putchar_fd.txt", O_RDWR);
+	read(fd, buffer, 1);
+	if (buffer[0] != 'a')
+		printf("     Fail! ft_putchar_fd('a'): '%c' <=> 'a'\n", buffer[0]);
+	close(fd);
+}
+
+void	putstr_fd_test(void)
+{
+	int		fd;
+	char	buffer[9];
+
+	fd = open("putstr_fd.txt", O_RDWR | O_CREAT, 0777);
+	ft_putstr_fd("Success!", fd);
+	close(fd);
+	fd = open("putendl_fd.txt", O_RDWR);
+	read(fd, buffer, 8);
+	if (strcmp(buffer, "Success!") != 0)
+		printf("     Fail! ft_putstr_fd('Success!'): '%s' <=> 'Success!'\n", buffer);
+	close(fd);
+}
+
+void	putendl_fd_test(void)
+{
+	int		fd;
+	char	buffer[10];
+
+	fd = open("putendl_fd.txt", O_RDWR | O_CREAT, 0777);
+	ft_putendl_fd("Success!", fd);
+	close(fd);
+	fd = open("putendl_fd.txt", O_RDWR);
+	read(fd, buffer, 10);
+	if (strcmp(buffer, "Success!\n") != 0)
+		printf("     Fail! ft_putendl_fd('Success!'): '%s' <=> 'Success!\n'\n", buffer);
+	close(fd);
+}
+
+void	putnbr_fd_test(void)
+{
+	int		fd;
+	char	buffer[12];
+
+	fd = open("putnbr_fd.txt", O_RDWR | O_CREAT, 0777);
+	ft_putnbr_fd(-2147483648, fd);
+	close(fd);
+	fd = open("putnbr_fd.txt", O_RDWR);
+	read(fd, buffer, 11);
+	if (strequ(buffer, "-2147483648") != 1)
+		printf("     Fail! ft_putnbr_fd(-2147483648): '%s' <=> '-2147483648'\n", buffer);
+	close(fd);
+}
+
+void	lstnew_test(void)
+{
+	t_list	*elem;
+
+	elem = NULL;
+	elem = ft_lstnew("String1", 7);
+	if (elem == NULL || strcmp(elem->content, "String1") != 0 || elem->next != NULL || elem->content_size != 7)
+		printf("     Fail! ft_lstnew(\"String1\", 7): %s->%s <=> String1->(null)\n", (char*)elem->content, (char*)elem->next);
 }
 
 void	lstadd_test(void)
@@ -985,7 +1188,7 @@ void	lstdel_test(void)
 	t_list *ptr3 = ptr1->next->next;
 	ft_lstdel(&ptr1, &ft_memset_test);
 	if (ptr1 != NULL)
-		printf("     Fail! ft_lstdel(String1->String2->String3): %p -> %p -> %p\n", ptr1, ptr2, ptr3);
+		printf("     Fail! ft_lstdel(String1->String2->String3): %s -> %s -> %s\n", (char*)ptr1, (char*)ptr2, (char*)ptr3);
 }
 
 void	lstdelone_test(void)
@@ -997,8 +1200,10 @@ void	lstdelone_test(void)
 	curr = ptr;
 	ft_lstdelone(&ptr, &ft_memset_test);
 	if (ptr != NULL || strcmp(curr->next->content, "String2") != 0)
-		printf("     Fail! ft_lstdelone(String1->String2): %s->%s <=> null->String2\n", (char*)curr, (char*)curr->next->content);
+		printf("     Fail! ft_lstdelone(String1->String2): %s->%s <=> (null)->String2\n", (char*)curr, (char*)curr->next->content);
 }
+
+
 
 static void	change_list(t_list *elem)
 {
@@ -1055,214 +1260,6 @@ void	lstmap_test(void)
 		(char*)curr->content, (char*)curr->next->content, (char*)curr->next->next->content);
 }
 
-void	lstnew_test(void)
-{
-	t_list	*elem;
-
-	elem = NULL;
-	elem = ft_lstnew("String1", 7);
-	if (elem == NULL || strcmp(elem->content, "String1") != 0 || elem->next != NULL || elem->content_size != 7)
-		printf("     Fail! ft_lstnew(\"String1\", 7): %s->%s <=> String1->(null)", (char*)elem->content, (char*)elem->next);
-}
-
-void	putchar_test(void)
-{
-	char	buffer[] = "Success!\n";
-	int		i;
-
-	i = 0;
-	while (buffer[i] != '\0')
-	{
-		ft_putchar(buffer[i]);
-		i++;
-	}
-}
-
-void	putchar_fd_test(void)
-{
-	int		fd;
-	char	buffer[1];
-
-	fd = open("putchar_fd.txt", O_RDWR | O_CREAT, 0777);
-	if (fd == -1)
-	{
-		printf("Failed to creat a file! Check result is undefined\n");
-		return ;
-	}
-	ft_putchar_fd('S', fd);
-	close(fd);
-	fd = open("putchar_fd.txt", O_RDWR);
-	if (fd == -1)
-	{
-		printf("Failed to open file! Check result is undefined.\n");
-		return ;
-	}
-	read(fd, buffer, 1);
-	if (buffer[0] == 'S')
-		printf("Success!\n");
-	else
-		printf("Fail! File first byte is: %c. Check file 'putchar_fd.txt'\n", buffer[0]);
-	close(fd);
-}
-
-void	putendl_test(void)
-{
-	ft_putendl("Success!");
-}
-
-void	putendl_fd_test(void)
-{
-	int		fd;
-	char	buffer[10];
-
-	fd = open("putendl_fd.txt", O_RDWR | O_CREAT, 0777);
-	if (fd == -1)
-	{
-		printf("Failed to creat a file! Check result is undefined\n");
-		return ;
-	}
-	ft_putendl_fd("Success!", fd);
-	close(fd);
-	fd = open("putendl_fd.txt", O_RDWR);
-	if (fd == -1)
-	{
-		printf("Failed to open file! Check result is undefined.\n");
-		return ;
-	}
-	read(fd, buffer, 10);
-	if (strcmp(buffer, "Success!\n") == 0)
-		printf("Success!\n");
-	else
-		printf("Fail! file first 10 bytes is: %s. check file 'putendl_fd.txt'\ncompare returns %d", buffer, strcmp(buffer, "success\n"));
-	close(fd);
-}
-
-void	putnbr_test(void)
-{
-	ft_putstr("\nTEST1: -2147483648 ");
-	ft_putnbr(-2147483648);
-	ft_putstr("\nTEST2: 2147483647 ");
-	ft_putnbr(2147483647);
-	ft_putstr("\nTEST3: -2147 ");
-	ft_putnbr(-2147);
-	ft_putstr("\nTEST4: 0 ");
-	ft_putnbr(0);
-	ft_putstr("\nTEST5: 1232147 ");
-	ft_putnbr(1232147);
-	ft_putstr("\n");
-}
-
-void	putnbr_fd_test(void)
-{
-	int		fd;
-	char	buffer[12];
-
-	fd = open("putnbr_fd.txt", O_RDWR | O_CREAT, 0777);
-	if (fd == -1)
-	{
-		printf("Failed to creat a file! Check result is undefined\n");
-		return ;
-	}
-	ft_putnbr_fd(-2147483648, fd);
-	close(fd);
-	fd = open("putnbr_fd.txt", O_RDWR);
-	if (fd == -1)
-	{
-		printf("Failed to open file! Check result is undefined.\n");
-		return ;
-	}
-	read(fd, buffer, 11);
-	if (strcmp(buffer, "-2147483648") == 0)
-		printf("Success!\n");
-	else
-		printf("Fail! File first 11 bytes is: %s. Check file 'putnbr_fd.txt'\ncompare returns %d", buffer, strcmp(buffer, "-2147483648"));
-	close(fd);
-}
-
-void	putstr_test(void)
-{
-	ft_putstr("Success!\n");
-}
-
-void	putstr_fd_test(void)
-{
-	int		fd;
-	char	buffer[9];
-
-	fd = open("putstr_fd.txt", O_RDWR | O_CREAT, 0777);
-	if (fd == -1)
-	{
-		printf("Failed to creat a file! Check result is undefined\n");
-		return ;
-	}
-	ft_putstr_fd("Success!", fd);
-	close(fd);
-	fd = open("putendl_fd.txt", O_RDWR);
-	if (fd == -1)
-	{
-		printf("Failed to open file! Check result is undefined.\n");
-		return ;
-	}
-	read(fd, buffer, 8);
-	if (strcmp(buffer, "Success!") == 0)
-		printf("Success!\n");
-	else
-		printf("Fail! file first 8 bytes is: %s. check file 'putstr_fd.txt'\ncompare returns %d", buffer, strcmp(buffer, "success\n"));
-	close(fd);
-}
-
-void	strsplit_test(void)
-{
-	char	**buffer;
-	int		i;
-
-	i = 0;
-	buffer = ft_strsplit("***This*is***test******string*******", '*');
-	if (buffer != NULL && strcmp(buffer[0], "This") != 0)
-	{
-		printf("Fail! buffer0 = %s\n", buffer[0]);
-		return ;
-	}
-	else if (buffer != NULL && strcmp(buffer[1], "is") != 0)
-	{
-		printf("Fail! buffer1 = %s\n", buffer[1]);
-		return ;
-	}
-	else if (buffer != NULL && strcmp(buffer[2], "test") != 0)
-	{
-		printf("Fail! buffer2 = %s\n", buffer[2]);
-		return ;
-	}
-	else if (buffer != NULL && strcmp(buffer[3], "string") != 0)
-	{
-		printf("Fail! buffer3 = %s\n", buffer[3]);
-		return ;
-	}
-	else if (buffer[4] != 0)
-	{
-		printf("Fail! buffer4 = %s\n", buffer[4]);
-		return ;
-	}
-	else if (ft_strsplit("**********", '*')[0] != NULL)
-	{
-		printf("Fail! Strsplit = %s String = '**********'\n", ft_strsplit("**********", '*')[0]);
-		return ;
-	}
-	else
-		printf("Success!\n");
-}
-
-void	strtrim_test(void)
-{
-	char	*buffer;
-
-	buffer = ft_strtrim("  \t\t\t\n\n\t   \t\nThis is test string!  \t\t\t\n\n\t   \t\n  ");
-	if (strcmp(buffer, "This is test string!") != 0)
-		printf("Fail! buffer = %s\n", buffer);
-	else
-		printf("Success!\n");
-}
-
 int		main(void)
 {
 	printf("Part 1\n");
@@ -1287,7 +1284,6 @@ int		main(void)
 	printf("STRCMP TESTING...\n"); strcmp_test();
 	printf("STRNCMP TESTING...\n"); strncmp_test();
 	printf("ATOI TESTING...\n"); atoi_test();
-	/*
 	printf("ISALPHA TESTING...\n"); isalpha_test();
 	printf("ISDIGIT TESTING...\n"); isdigit_test();
 	printf("ISALNUM TESTING...\n"); isalnum_test();
@@ -1295,7 +1291,6 @@ int		main(void)
 	printf("ISPRINT TESTING...\n"); isprint_test();
 	printf("TOUPPER TESTING...\n"); toupper_test();
 	printf("TOLOWER TESTING...\n"); tolower_test();
-	*/
 	printf("Part 2\n");
 	printf("MEMALLOC TESTING...\n"); memalloc_test();
 	printf("MEMDEL TESTING...\n"); memdel_test();
@@ -1312,11 +1307,10 @@ int		main(void)
 	printf("STRJOIN TESTING...\n"); strjoin_test();
 	printf("STRTRIM TESTING...\n"); strtrim_test();
 	printf("STRSPLIT TESTING...\n"); strsplit_test();
-	/*
 	printf("ITOA TESTING...\n"); itoa_test();
-	printf("PUTHCAR TESTING...\n"); putchar_test();
-	printf("PUTSTR TESTING...\n"); putstr_test();
-	printf("PUTENDL TESTING...\n"); putendl_test();
+	putchar_test();
+	putstr_test();
+	putendl_test();
 	printf("PUTNBR TESTING...\n"); putnbr_test();
 	printf("PUTCHAR_FD TESTING...\n"); putchar_fd_test();
 	printf("PUTSTR_FD TESTING...\n"); putstr_fd_test();
@@ -1330,6 +1324,5 @@ int		main(void)
 	printf("LSTITER TESTING...\n"); lstiter_test();
 	printf("LSTMAP TESTING...\n"); lstmap_test();
 	//system("leaks a.out");
-	*/
 	return (0);
 }
