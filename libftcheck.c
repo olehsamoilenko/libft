@@ -589,7 +589,7 @@ void	atoi_test(void)
 	while (test[++i])
 	{
 		if (atoi(test[i]) != ft_atoi(test[i]))
-			printf("     Fail! ft_atoi(%s): %d atoi(%s): %d\n", test[i], ft_atoi(test[i]), test[i], atoi(test[i]));
+			printf("     Fail! ft_atoi('%s'): %d <=> %d\n", test[i], ft_atoi(test[i]), atoi(test[i]));
 	}
 }
 
