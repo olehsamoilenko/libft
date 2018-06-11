@@ -13,7 +13,7 @@
 #include "libft.h"
 #define MAX 922337203685477580
 
-int				ft_atoi(const char *str)
+int			ft_atoi(const char *str)
 {
 	int				i;
 	int				sign;

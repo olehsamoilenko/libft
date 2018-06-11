@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static void		fill(int number, char *a, int len)
+static void		fill(intmax_t number, char *a, int len)
 {
 	if (number == 0)
 		a[0] = '0';
@@ -25,22 +25,22 @@ static void		fill(int number, char *a, int len)
 	}
 }
 
-char			*ft_itoa(int number)
+char			*ft_itoa(intmax_t number)
 {
 	char	*a;
 	int		sign;
 	int		len;
 
 	sign = 0;
-	if (number == -2147483648)
-		return (ft_strdup("-2147483648"));
+	if (number < -9223372036854775807)
+		return (ft_strdup("-9223372036854775808"));
 	if (number < 0)
 	{
 		number *= -1;
 		sign = 1;
 	}
 	len = ft_countdigits(number);
-	a = (char*)malloc(sizeof(char) * (len + sign + 1));
+	a = ft_strnew(len + sign);
 	if (!a)
 		return (0);
 	if (sign == 1)

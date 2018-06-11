@@ -79,7 +79,17 @@ SRC =	ft_memset.c \
 		ft_wordscount.c \
 		ft_arrclr.c \
 		ft_lstaddend.c \
-		get_next_line.c
+		itoa_base.c \
+		get_next_line/get_next_line.c \
+		printf/ft_printf.c \
+		printf/parsing.c \
+		printf/recognise.c \
+		printf/type_c.c \
+		printf/type_hex.c \
+		printf/type_integer.c \
+		printf/type_o.c \
+		printf/type_s.c \
+		printf/type_unsigned.c
 
 OBJ = $(SRC:.c=.o)
 

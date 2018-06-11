@@ -15,7 +15,8 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "get_next_line.h"
+# include "get_next_line/get_next_line.h"
+# include "printf/printf.h"
 
 typedef struct		s_list
 {
@@ -68,9 +69,9 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
-char				*ft_itoa(int n);
-void				ft_putchar(char c);
-void				ft_putstr(char const *s);
+char				*ft_itoa(intmax_t number);
+int					ft_putchar(int c);
+int					ft_putstr(char const *s);
 void				ft_putendl(char const *s);
 void				ft_putnbr(int n);
 void				ft_putchar_fd(char c, int fd);
@@ -84,9 +85,10 @@ void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_iswhitespace(int c);
-int					ft_countdigits(int n);
+int					ft_countdigits(intmax_t n);
 int					ft_wordscount(const char *s, char c);
 void				ft_arrclr(char **arr);
+char				*itoa_base(uintmax_t num, int base, int letters);
 void				ft_lstaddend(t_list **alst, t_list *new);
 
 #endif
