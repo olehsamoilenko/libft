@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osamoile <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/21 20:49:12 by osamoile          #+#    #+#             */
-/*   Updated: 2018/03/21 20:53:23 by osamoile         ###   ########.fr       */
+/*   Created: 2018/04/12 16:21:16 by osamoile          #+#    #+#             */
+/*   Updated: 2018/04/12 16:22:13 by osamoile         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# define BUFF_SIZE 9999
 
-size_t	ft_strlen(const char *s)
-{
-	size_t i;
+int		get_next_line(const int fd, char **line);
 
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
+#endif

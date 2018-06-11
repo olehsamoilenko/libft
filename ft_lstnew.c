@@ -22,13 +22,13 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 	lst->content_size = content_size;
 	if (content != 0)
 	{
-		lst->content = malloc(lst->content_size);
+		lst->content = ft_strdup(content);
 		if (!lst->content)
 		{
 			free(lst);
 			return (0);
 		}
-		lst->content = ft_memcpy(lst->content, content, lst->content_size);
+		ft_strcpy(lst->content, content);
 	}
 	else
 	{
