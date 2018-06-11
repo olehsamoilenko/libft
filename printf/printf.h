@@ -32,8 +32,6 @@
 # define _11100000 224
 # define _11110000 240
 # include <stdarg.h>
-# include <unistd.h>
-# include <stdlib.h>
 
 typedef struct	s_pattern
 {
