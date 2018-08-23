@@ -90,8 +90,6 @@ LIST =		ft_memset \
 			type_unsigned
 OBJ =		$(addprefix obj/, $(addsuffix .o, $(LIST)))
 
-
-
 all: $(NAME)
 
 obj/%.o: src/%.c
