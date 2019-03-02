@@ -14,7 +14,6 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
-# include <inttypes.h>
 # include "get_next_line.h"
 # include "printf.h"
 
@@ -91,5 +90,7 @@ int					ft_countdigits(intmax_t n);
 int					ft_wordscount(const char *s, char c);
 void				ft_arrclr(char **arr);
 void				ft_lstaddend(t_list **alst, t_list *new);
+char				**ft_chartable(int x, int y);
+int					ft_abs(int n);
 
 #endif
