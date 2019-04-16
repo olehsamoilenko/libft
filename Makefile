@@ -94,21 +94,37 @@ LIST =		ft_memset \
 			ft_char_count
 OBJ =		$(addprefix obj/, $(addsuffix .o, $(LIST)))
 
+OFF=\033[0;0m
+RED=\033[0;31m
+REDBOLD=\033[1;31m
+GREEN=\033[0;32m
+GREENBOLD=\033[1;32m
+YELLOW=\033[0;33m
+YELLOWBOLD=\033[1;33m
+PURPLE=\033[0;35m
+PURPLEBOLD=\033[1;35m
+
 all: $(NAME)
 
 obj/%.o: src/%.c
 	@gcc $(FLAGS) -c $< -o $@ $(HEADERS)
+	@echo "$(GREEN)Compiling$(GREENBOLD) $< $(GREEN)done.$(OFF)"
 
 $(NAME): obj $(OBJ)
 	@ar -rc $(NAME) $(OBJ)
+	@echo "$(PURPLEBOLD)$(NAME) $(PURPLE)is ready.$(OFF)"
 
 obj:
 	@mkdir obj
 	
 clean:
 	@rm -rf obj
+	@echo "$(RED)Directory$(REDBOLD) libft/obj $(RED)has been destroyed.$(OFF)"
 
-fclean: clean
+clean_bin:
 	@rm -f $(NAME)
+	@echo "$(RED)Library$(REDBOLD) $(NAME) $(RED)has been destroyed.$(OFF)"
+
+fclean: clean clean_bin
 
 re: fclean all
