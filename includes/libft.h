@@ -92,5 +92,7 @@ void				ft_arrclr(char **arr);
 void				ft_lstaddend(t_list **alst, t_list *new);
 char				**ft_chartable(int x, int y);
 int					ft_abs(int n);
+int					ft_arrlen(char **arr);
+int					ft_char_count(char c, char *line);
 
 #endif
