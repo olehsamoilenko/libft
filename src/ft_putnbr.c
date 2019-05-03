@@ -6,7 +6,7 @@
 /*   By: osamoile <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 14:30:02 by osamoile          #+#    #+#             */
-/*   Updated: 2018/03/27 14:30:04 by osamoile         ###   ########.fr       */
+/*   Updated: 2019/05/03 10:57:16 by osamoile         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ static void	fill_and_put(int n, char *buf)
 void		ft_putnbr(int n)
 {
 	char	buf[10000];
-	int		i;
 
-	i = 0;
 	if (n == -2147483648)
 	{
 		ft_putnbr(-214748364);

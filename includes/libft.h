@@ -6,7 +6,7 @@
 /*   By: osamoile <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 19:26:43 by osamoile          #+#    #+#             */
-/*   Updated: 2018/03/21 19:32:20 by osamoile         ###   ########.fr       */
+/*   Updated: 2019/05/03 10:56:48 by osamoile         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
+# include <inttypes.h>
 # include "get_next_line.h"
 # include "printf.h"
 
