@@ -14,7 +14,7 @@
 
 int		get_size(int c)
 {
-	if (c <= BIN("01111111") || MB_CUR_MAX != 4)
+	if (c <= BIN("01111111"))
 		return (1);
 	else if (c <= BIN("0000011111111111"))
 		return (2);
@@ -28,7 +28,7 @@ int		ft_putchar(int c)
 {
 	unsigned char	code[4];
 
-	if (c <= BIN("01111111") || MB_CUR_MAX != 4)
+	if (c <= BIN("01111111"))
 		code[0] = c;
 	else if (c <= BIN("0000011111111111"))
 	{
