@@ -12,7 +12,7 @@
 
 NAME =		libft.a
 HEADERS =	-I ./includes
-FLAGS =		-Wall -Werror -Wextra
+FLAGS =		-Wall -Werror -Wextra -fvisibility=hidden -fPIC
 LIST =		ft_memset \
 			ft_bzero \
 			ft_memcpy \
