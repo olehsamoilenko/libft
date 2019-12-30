@@ -63,3 +63,26 @@ char		*ft_itoa_base(uintmax_t num, int base, int letters)
 	}
 	return (res);
 }
+
+void		ft_print_hex(unsigned long num, t_bool print_0x)
+{
+	static t_bool start = true;
+
+	if (start)
+	{
+		if (print_0x)
+			ft_putstr("0x");
+		start = false;
+	}
+	if (num / 16 == 0)
+	{
+		ft_putchar(convert(num % 16, 0));
+		start = true;
+		return ;
+	}
+	else
+	{
+		ft_print_hex(num / 16, print_0x);
+		ft_putchar(convert(num % 16, 0));
+	}
+}

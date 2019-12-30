@@ -101,5 +101,6 @@ char				**ft_chartable(int x, int y);
 int					ft_abs(int n);
 int					ft_arrlen(char **arr);
 int					ft_char_count(char c, char *line);
+void				ft_print_hex(unsigned long num, t_bool print_0x);
 
 #endif
